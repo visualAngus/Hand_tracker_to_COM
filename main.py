@@ -17,7 +17,7 @@ cTime = 0
 hand_points = []
 is_set_open = False
 is_set_close = False
-arduino = serial.Serial('COM6', 9600)
+arduino = serial.Serial('votre_port_COM', 9600)
 
 def get_distance(point1, point2):
     return int(((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2) ** 0.5)
