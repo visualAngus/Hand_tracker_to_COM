@@ -3,32 +3,32 @@
 Pour faire fonctionner le projet il vous faut plusieurs choses :
 
 ### soft :
-- python3
-- cv2
-- serial
-- mediapipe
-- arduino IDE
+- Python 3
+- OpenCV (cv2)
+- PySerial
+- MediaPipe
+- Arduino IDE
 
 ### matériels :
-- carte arduino (UNO)
-- servo moteurs
-- PC de control
-- webcam
+- Carte Arduino (UNO)
+- Servo-moteurs
+- PC de contrôle
+- Webcam
 
 #
 
 ### INSTALLATION :
 
-1. Téléchargez le projet github, cliquez sur `code` puis `download zip`.
+1. Téléchargez le projet GitHub, cliquez sur `Code` puis `Download ZIP`.
 2. Décompressez le dossier.
 
 #### installation des lib :
-1. ouvrez la `cmd` puis écrivez :
+1. ouvrez l'invite de commande (`cmd`) et écrivez :
    
    ```
    pip install opencv-python pyserial mediapipe
    ```
-2. Si il n'y a aucune erreur passez au lancement sinon, demandez de l'aide.
+2. Si aucune erreur n'apparaît, passez au lancement. Sinon, demandez de l'aide.
 
 #
 
@@ -36,13 +36,12 @@ Pour faire fonctionner le projet il vous faut plusieurs choses :
 
 1. Arduino :
 
-   - Branchez la carte `arduino` en usb au PC.
-   
-   - Lancez l'application `Arduino IDE` puis dans `utils`, `type de carte` selectionnez `Arduino Uno`.
-   - Selcetion ensuite de le menu `port` le port `COM` de votre carte.
-   
+   - Branchez la carte Arduino en USB au PC.
+   - Lancez l'application `Arduino IDE`.
+   - Dans `Outils`, `Type de carte` selectionnez `Arduino Uno`.
+   - Sélectionnez ensuite le port COM de votre carte dans le menu  `port`.
    - Ouvrez le fichier `arduino_code.ino` dans `Arduino IDE`.
-   - Changez les `pins` des differents moteurs.
+   - Changez les `broches` des differents moteurs.
      
         ```
          void setup() {
@@ -54,28 +53,27 @@ Pour faire fonctionner le projet il vous faut plusieurs choses :
            monServo5.attach(8);  //<--- auriculaire
          }
         ```
-   - cliquez ensuite sur `Téléverser`, une fois le téléversement fini passez à l'étape suivante.
+   - cliquez ensuite sur `Téléverser`. Une fois le téléversement fini passez à l'étape suivante.
 
 
 
 2. Python :
 
-   - Ouvrez votre IDE `python` puis chargez le fichier `main.py` changez `votre_port_COM` avec votre port `COM`.
+   - Ouvrez votre IDE Python et chargez le fichier `main.py`.
+   - Remplacez `votre_port_série` par le port COM de votre carte.
 
       ```
       arduino = serial.Serial('votre_port_COM', 9600)
       ```
-   - Branchez votre `webcam` sur l'ordinateur.
+   - Branchez votre webcam sur l'ordinateur.
      
 3. Lancement :
 
    - Executez le code `main.py`.
-  
-   - Lorsque la vidéo sera visible, ouvrez votre main fasse à la caméra puis appuiez sur `o`.
-   - Ensuite fremez votre main fasse à la caméra puis appuiez sur `c`.
-  
-   - 
+   - Lorsque la vidéo est visible, ouvrez votre main face à la caméra et appuyez sur `o`.
+   - Ensuite, fermez votre main face à la caméra et appuyez sur `c`.
+
 ### Une fois tout cela fait la carte arduino devrait recevoir en direct les mouvements de votre main.
-###### ps : votre main doit rester dans une position semblable à la posiotn de votre main lors de l'initialisation si vous souhaite changer drastiquement la position de la main, déplacez votre main puis refaites les étapes précédents. 
+###### Remarque : Votre main doit rester dans une position semblable à la position de votre main lors de l'initialisation. Si vous souhaitez changer drastiquement la position de la main, déplacez votre main puis refaites les étapes précédentes.
 
 
