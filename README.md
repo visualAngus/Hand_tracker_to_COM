@@ -63,7 +63,7 @@ Pour faire fonctionner le projet il vous faut plusieurs choses :
    - Remplacez `votre_port_série` par le port COM de votre carte.
 
       ```
-      arduino = serial.Serial('COM6', 9600)
+      arduino = serial.Serial('votre_port_série', 9600)
       ```
    - Branchez votre webcam sur l'ordinateur.
      
