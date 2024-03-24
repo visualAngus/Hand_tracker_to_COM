@@ -63,8 +63,8 @@ void loop() {
       monServo1.write(angle_servo[0]);
       monServo2.write(angle_servo[1]);
       monServo3.write(angle_servo[2]);
-      monServo3.write(angle_servo[3]);
-      monServo3.write(angle_servo[4]);
+      monServo4.write(angle_servo[3]);
+      monServo5.write(angle_servo[4]);
     }
   }
 }
