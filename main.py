@@ -34,7 +34,6 @@ def get_distance(point1, point2):
 def gestion_doigts(point_id, id_doigt, base, min_values, max_values):
     end = points[point_id][1:]
     distance = get_distance(base, end)
-    print(min_values[id_doigt])
     ratio = (distance - min_values[id_doigt]) / (max_values[id_doigt] - min_values[id_doigt])
     if ratio < 0:
         min_values[id_doigt] = distance - 1
@@ -108,7 +107,7 @@ def send_data_by_COM(data_thumb, data_index, data_middle, data_ring, data_pinky)
         arduino.write(message)
     except:
         print("Erreur lors de l'envoi des données")
-    time.sleep(0.02)
+    time.sleep(0.05)
 
 while True:
     # Lecture de l'image
