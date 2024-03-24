@@ -17,7 +17,7 @@ mpDraw = mp.solutions.drawing_utils
 hand_points = []
 is_set_open = False
 is_set_close = False
-arduino = serial.Serial('COM4', 9600)
+arduino = serial.Serial('votre_port_COM', 9600)
 
 def get_distance(point1, point2):
     """
