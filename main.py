@@ -31,6 +31,21 @@ def get_distance(point1, point2):
     """
     return int(((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2) ** 0.5)
 
+def gestion_doigts(point_id, id_doigt, base, min_values, max_values):
+    end = points[point_id][1:]
+    distance = get_distance(base, end)
+    print(min_values[id_doigt])
+    ratio = (distance - min_values[id_doigt]) / (max_values[id_doigt] - min_values[id_doigt])
+    if ratio < 0:
+        min_values[id_doigt] = distance - 1
+        ratio = (distance - min_values[id_doigt]) / (max_values[id_doigt] - min_values[id_doigt])
+    if ratio > 1:
+        max_values[id_doigt] = distance + 1
+        ratio = (distance - min_values[id_doigt]) / (max_values[id_doigt] - min_values[id_doigt])
+
+    return distance, ratio, min_values, max_values
+
+
 def get_distances(points, max_values=[1, 1, 1, 1, 1], min_values=[0, 0, 0, 0, 0]):
     """
     Calcule la distance entre la base et le bout de chaque doigts.
@@ -44,59 +59,15 @@ def get_distances(points, max_values=[1, 1, 1, 1, 1], min_values=[0, 0, 0, 0, 0]
         tuple: Un tuple contenant les distances et les ratios de chaque doigts.
     """
     base = points[0][1:]
-
-    thumb_end = points[4][1:]
-    thumb_distance = get_distance(base, thumb_end)
-    thumb_ratio = (thumb_distance- min_values[0]) / (max_values[0] - min_values[0])
-    if thumb_ratio < 0:
-        min_values[0] = thumb_distance-1
-        thumb_ratio = (thumb_distance- min_values[0]) / (max_values[0] - min_values[0])
-    if thumb_ratio > 1:
-        max_values[0] = thumb_distance+1
-        thumb_ratio = (thumb_distance- min_values[0]) / (max_values[0] - min_values[0])
-
-    index_end = points[8][1:]
-    index_distance = get_distance(base, index_end)
-    index_ratio = (index_distance- min_values[1])/ (max_values[1] - min_values[1])
-    if index_ratio < 0:
-        min_values[1] = index_distance-1
-        index_ratio = (index_distance- min_values[1])/ (max_values[1] - min_values[1])
-    if index_ratio > 1:
-        max_values[1] = index_distance+1
-        index_ratio = (index_distance- min_values[1])/ (max_values[1] - min_values[1])
-
-    middle_end = points[12][1:]
-    middle_distance = get_distance(base, middle_end)
-    middle_ratio = (middle_distance- min_values[2]) / (max_values[2] - min_values[2])
-    if middle_ratio < 0:
-        min_values[2] = middle_distance-1
-        middle_ratio = (middle_distance- min_values[2]) / (max_values[2] - min_values[2])
-    if middle_ratio > 1:
-        max_values[2] = middle_distance+1
-        middle_ratio = (middle_distance- min_values[2]) / (max_values[2] - min_values[2])
-
-    ring_end = points[16][1:]
-    ring_distance = get_distance(base, ring_end)
-    ring_ratio = (ring_distance- min_values[3]) / (max_values[3] - min_values[3])
-    if ring_ratio < 0:
-        min_values[3] = ring_distance-1
-        ring_ratio = (ring_distance- min_values[3]) / (max_values[3] - min_values[3])
-    if ring_ratio > 1:
-        max_values[3] = ring_distance+1
-        ring_ratio = (ring_distance- min_values[3]) / (max_values[3] - min_values[3])
+    distance = []
+    ratio = []
+    id_point = [4, 8, 12, 16, 20]
+    for i in range(5):
+        tmp_dist, ra, min_values, max_values = gestion_doigts(id_point[i], i, base, min_values, max_values)
+        distance.append(tmp_dist)
+        ratio.append(ra)
+    return distance[0], distance[1], distance[2], distance[3], distance[4], ratio[0], ratio[1], ratio[2], ratio[3], ratio[4], min_values, max_values
     
-    pinky_end = points[20][1:]
-    pinky_distance = get_distance(base, pinky_end)
-    pinky_ratio = (pinky_distance- min_values[4]) / (max_values[4] - min_values[4])
-    if pinky_ratio < 0:
-        min_values[4] = pinky_distance-1
-        pinky_ratio = (pinky_distance- min_values[4]) / (max_values[4] - min_values[4])
-    if pinky_ratio > 1:
-        max_values[4] = pinky_distance+1
-        pinky_ratio = (pinky_distance- min_values[4]) / (max_values[4] - min_values[4])
-
-    return thumb_distance, index_distance, middle_distance, ring_distance, pinky_distance, thumb_ratio, index_ratio, middle_ratio, ring_ratio, pinky_ratio, min_values, max_values
-
 def set_open(distances):
     """
     Définir les distances des doigts ouverts.
