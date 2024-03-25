@@ -133,7 +133,7 @@ while True:
             t_d, i_d, m_d, r_d, p_d, thumb_ratio, index_ratio, middle_ratio, ring_ratio, pinky_ratio,min_value,max_value = get_distances(hand_points[0], [t_open, i_open, m_open, r_open, p_open], [t_close, i_close, m_close, r_close, p_close])
             t_open, i_open, m_open, r_open, p_open = max_value
             t_close, i_close, m_close, r_close, p_close = min_value
-            send_data_by_COM(int(thumb_ratio * 180), int(index_ratio * 180), int(middle_ratio * 180), int(ring_ratio * 180), int(pinky_ratio * 180))
+            send_data_by_COM(int((1-thumb_ratio) * 180), int(index_ratio * 180), int(middle_ratio * 180), int(ring_ratio * 180), int((1-pinky_ratio) * 180))
         else:
             t_d, i_d, m_d, r_d, p_d, thumb_ratio, index_ratio, middle_ratio, ring_ratio, pinky_ratio,_,_ = get_distances(hand_points[0])
     # Afficher l'image
